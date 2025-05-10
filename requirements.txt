@@ -1,6 +1,6 @@
 flask
 flask-cors
-gunicorna
+gunicorn
 numpy
 opencv-python-headless
 paddleocr
