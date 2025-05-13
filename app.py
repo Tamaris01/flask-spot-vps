@@ -89,7 +89,7 @@ def result():
 @app.route('/check_plate/<plat_nomor>', methods=['GET'])
 def check_plate(plat_nomor):
     try:
-        response = requests.get(f'https://laravel-spot-production.up.railway.app/api/check_plate/{plat_nomor}')
+        response = requests.get(f'http://127.0.0.1:8000/api/check_plate/{plat_nomor}')
         if response.status_code == 200:
             return response.json()
         else:
@@ -97,6 +97,7 @@ def check_plate(plat_nomor):
     except requests.exceptions.RequestException as e:
         return {"error": str(e), "exists": False}
 
+# Ensure the Flask app runs only if executed directly
 if __name__ == '__main__':
     threading.Thread(target=detect_loop, daemon=True).start()
     app.run(host='0.0.0.0', port=8080, debug=False)
